@@ -18,11 +18,13 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 /**
- * Created by Gui on 13/07/2014.
+ * Jetty Runner Configuration - Model
+ * @see com.intellij.execution.configurations.LocatableConfigurationBase
+ * @author Gui Keller
  */
 public class JettyRunnerConfiguration extends LocatableConfigurationBase {
 
-    public static final String PREFIX = "JettyRunnerV02-";
+    public static final String PREFIX = "JettyRunnerV03-";
 
     private static final String WEBAPP_PATHS = PREFIX+"webappPaths";
     private static final String WEBAPP_FOLDERS = PREFIX+"webappFolders";
@@ -31,13 +33,13 @@ public class JettyRunnerConfiguration extends LocatableConfigurationBase {
     private static final String DEBUGGER_PORT = PREFIX+"debuggerPort";
     private static final String JETTY_XML = PREFIX+"jettyXml";
 
-    private String webappPaths = new String();
-    private String webappFolders = new String();
-    private String classesDirectories = new String();
+    private String webappPaths;
+    private String webappFolders;
+    private String classesDirectories;
 
-    private String runningOnPort = new String();
-    private String debuggerPort = new String();
-    private String jettyXml = new String();
+    private String runningOnPort;
+    private String debuggerPort;
+    private String jettyXml;
 
 
     public JettyRunnerConfiguration(Project project, ConfigurationFactory factory, String name) {
@@ -59,7 +61,7 @@ public class JettyRunnerConfiguration extends LocatableConfigurationBase {
     @Override
     public void readExternal(Element element) throws InvalidDataException {
         super.readExternal(element);
-        // JetBrains Documentation on this is next to zero
+        // Reads the values from disk
         Project project = super.getProject();
         PropertiesComponent storedValues = PropertiesComponent.getInstance(project);
         this.webappPaths = storedValues.getValue(WEBAPP_PATHS);
@@ -73,7 +75,7 @@ public class JettyRunnerConfiguration extends LocatableConfigurationBase {
     @Override
     public void writeExternal(Element element) throws WriteExternalException {
         super.writeExternal(element);
-        // JetBrains Documentation on this is next to zero
+        // Persists the values in disk
         Project project = super.getProject();
         PropertiesComponent storedValues = PropertiesComponent.getInstance(project);
         storedValues.setValue(WEBAPP_PATHS, this.webappPaths);
@@ -85,18 +87,24 @@ public class JettyRunnerConfiguration extends LocatableConfigurationBase {
     }
 
     public JettyRunnerConfiguration clone(){
-        super.clone();
-        final Element element = new Element(PREFIX+UUID.randomUUID().toString());
         try {
+            super.clone();
+            // Duplication of a configuration
+            Element element = new Element(PREFIX+UUID.randomUUID().toString());
+            // Write the values to the new element using the current values
             this.writeExternal(element);
+            // Creates a new running configuration
             Project project = super.getProject();
             ConfigurationFactory factory = super.getFactory();
-            JettyRunnerConfiguration configuration = (JettyRunnerConfiguration)factory.createTemplateConfiguration(project);
+            RunConfiguration template = factory.createTemplateConfiguration(project);
+            // Copies the values by reading and returns the new configuration
+            JettyRunnerConfiguration configuration = (JettyRunnerConfiguration) template;
             configuration.setName(super.getName());
             configuration.readExternal(element);
             return configuration;
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage(), e);
+            // I have no idea why this would happen
+            throw new RuntimeException(e);
         }
     }
 
@@ -149,4 +157,5 @@ public class JettyRunnerConfiguration extends LocatableConfigurationBase {
     public void setDebuggerPort(String debuggerPort) {
         this.debuggerPort = debuggerPort;
     }
+
 }

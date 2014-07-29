@@ -8,9 +8,10 @@ This plugin should be Win / Mac / Linux compatible - min req: JVM 5.0 <br>
 <b>0.0.3</b> - Third release; <br>
 <br>
 What's new: <br>
-<b>1)</b> Internal code refactoring and documentation. <br>
-<b>2)</b> UI Layout created using IntelliJ. <br>
-<b>3)</b> Unit tests <br>
+<b>1)</b> Run and Debug Configurations now work! 
+<b>2)</b> Internal code refactoring and documentation. <br>
+<b>3)</b> UI Layout created using IntelliJ. <br>
+<b>4)</b> Some Unit Tests. <br>
 <br>
 <b>0.0.2</b> - Second release; <br>
 <b>*Note</b>: Debugging is available through 'Remote', the port is configurable within the plugin.<br>
@@ -28,9 +29,9 @@ I'm going to start writing those unit tests, soon..<br>
 <br>
 <b>TODO:</b> <br>
 <b>1)</b> Debugger port selector; for now its fixed on 5007. [DONE]<br>
-<b>2)</b> Figure out why the debugger doesn't work out of the box; JetBrains?<br>
+<b>2)</b> Figure out why the debugger doesn't work out of the box; JetBrains? [DONE]<br>
 <b>3)</b> Better UI Layout- BoxLayout is not the greatest; GridBag? [DONE]<br>
-<b>4)</b> Unit Tests - sorry guys I got a bit lazy here.<br>
-<b>5)</b> Bug fixes (?)<br>
+<b>4)</b> Unit Tests - sorry guys I got a bit lazy here.[SOME]<br>
+<b>5)</b> Bug fixes / Improvements (?)<br>
 <br>
 Thanks for dropping by.

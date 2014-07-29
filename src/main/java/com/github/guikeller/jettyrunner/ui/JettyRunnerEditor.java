@@ -71,12 +71,6 @@ public class JettyRunnerEditor extends SettingsEditor<JettyRunnerConfiguration> 
         } else {
             this.configurationPanel.getRunOnPortField().setText("8080");
         }
-        // Debugger port
-        if (jettyRunnerConfiguration.getDebuggerPort() != null) {
-            this.configurationPanel.getDebuggerField().setText(jettyRunnerConfiguration.getDebuggerPort());
-        } else {
-            this.configurationPanel.getDebuggerField().setText("5005");
-        }
         // Jetty XML (Optional)
         this.configurationPanel.getXmlField().setText(jettyRunnerConfiguration.getJettyXml());
     }
@@ -92,7 +86,6 @@ public class JettyRunnerEditor extends SettingsEditor<JettyRunnerConfiguration> 
         jettyRunnerConfiguration.setWebappFolders(this.configurationPanel.getWebappField().getText());
         jettyRunnerConfiguration.setClassesDirectories(this.configurationPanel.getClassesField().getText());
         jettyRunnerConfiguration.setRunningOnPort(this.configurationPanel.getRunOnPortField().getText());
-        jettyRunnerConfiguration.setDebuggerPort(this.configurationPanel.getDebuggerField().getText());
         jettyRunnerConfiguration.setJettyXml(this.configurationPanel.getXmlField().getText());
         try {
             // Not entirely sure if 'I have' to do this - the framework could do

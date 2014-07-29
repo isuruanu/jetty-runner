@@ -17,6 +17,8 @@ import org.jetbrains.annotations.NotNull;
  */
 public class JettyProgramRunner extends DefaultProgramRunner {
 
+    private static final String RUN = "Run";
+
     public JettyProgramRunner(){
         super();
     }
@@ -28,6 +30,9 @@ public class JettyProgramRunner extends DefaultProgramRunner {
 
     public boolean canRun(@NotNull String value, @NotNull RunProfile runProfile) {
         if(!(runProfile instanceof JettyRunnerConfiguration)){
+            return false;
+        }
+        if(!RUN.equals(value)) {
             return false;
         }
         return true;

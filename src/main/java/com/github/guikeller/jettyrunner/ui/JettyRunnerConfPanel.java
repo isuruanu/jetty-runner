@@ -17,7 +17,6 @@ public class JettyRunnerConfPanel {
     private JTextField webappField;
     private JTextField classesField;
     private JTextField runOnPortField;
-    private JTextField debuggerField;
     private JTextField xmlField;
     private JButton browseButton;
 
@@ -62,11 +61,8 @@ public class JettyRunnerConfPanel {
         return runOnPortField;
     }
 
-    public JTextField getDebuggerField() {
-        return debuggerField;
-    }
-
     public JTextField getXmlField() {
         return xmlField;
     }
+
 }

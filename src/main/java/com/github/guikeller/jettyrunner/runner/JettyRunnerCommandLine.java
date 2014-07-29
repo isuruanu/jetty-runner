@@ -10,8 +10,8 @@ import com.intellij.openapi.module.ModuleManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.util.PathUtil;
-import org.mortbay.jetty.runner.Runner;
 import org.jetbrains.annotations.NotNull;
+import org.mortbay.jetty.runner.Runner;
 
 /**
  * Jetty Runner Command Line - Starts / Executes Jetty
@@ -19,10 +19,6 @@ import org.jetbrains.annotations.NotNull;
  * @author Gui Keller
  */
 public class JettyRunnerCommandLine extends JavaCommandLineState {
-
-    // TODO - Figure out why the debugger doesn't work out of the box - for now use remote.
-    private static final String XDEBUG = "-Xdebug";
-    private static final String JDWP = "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=";
 
     // Jetty "Main Class" - the target
     private static final String MAIN_CLASS = Runner.class.getName();
@@ -71,11 +67,6 @@ public class JettyRunnerCommandLine extends JavaCommandLineState {
         // Port - configured by the user (default 8080)
         String port = this.getPort();
         javaParams.getProgramParametersList().addParametersString(port);
-        // Making the assumption that JVM is 5.0 onwards
-        javaParams.getVMParametersList().addParametersString(XDEBUG);
-        // Debugger port - configured by the user (default 5005)
-        String remotePort = JDWP + model.getDebuggerPort();
-        javaParams.getVMParametersList().addParametersString(remotePort);
         // All done, run it
         return javaParams;
     }

@@ -4,7 +4,10 @@ import com.github.guikeller.jettyrunner.runner.JettyRunnerCommandLine;
 import com.github.guikeller.jettyrunner.ui.JettyRunnerEditor;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.Executor;
-import com.intellij.execution.configurations.*;
+import com.intellij.execution.configurations.ConfigurationFactory;
+import com.intellij.execution.configurations.LocatableConfigurationBase;
+import com.intellij.execution.configurations.RunConfiguration;
+import com.intellij.execution.configurations.RunProfileState;
 import com.intellij.execution.runners.ExecutionEnvironment;
 import com.intellij.ide.util.PropertiesComponent;
 import com.intellij.openapi.options.SettingsEditor;
@@ -38,7 +41,6 @@ public class JettyRunnerConfiguration extends LocatableConfigurationBase {
     private String classesDirectories;
 
     private String runningOnPort;
-    private String debuggerPort;
     private String jettyXml;
 
 
@@ -68,7 +70,6 @@ public class JettyRunnerConfiguration extends LocatableConfigurationBase {
         this.webappFolders = storedValues.getValue(WEBAPP_FOLDERS);
         this.classesDirectories = storedValues.getValue(CLASSES_DIRS);
         this.runningOnPort = storedValues.getValue(RUNNING_PORT);
-        this.debuggerPort = storedValues.getValue(DEBUGGER_PORT);
         this.jettyXml = storedValues.getValue(JETTY_XML);
     }
 
@@ -82,7 +83,6 @@ public class JettyRunnerConfiguration extends LocatableConfigurationBase {
         storedValues.setValue(WEBAPP_FOLDERS, this.webappFolders);
         storedValues.setValue(CLASSES_DIRS, this.classesDirectories);
         storedValues.setValue(RUNNING_PORT, this.runningOnPort);
-        storedValues.setValue(DEBUGGER_PORT, this.debuggerPort);
         storedValues.setValue(JETTY_XML, this.jettyXml);
     }
 
@@ -148,14 +148,6 @@ public class JettyRunnerConfiguration extends LocatableConfigurationBase {
 
     public void setJettyXml(String jettyXml) {
         this.jettyXml = jettyXml;
-    }
-
-    public String getDebuggerPort() {
-        return debuggerPort;
-    }
-
-    public void setDebuggerPort(String debuggerPort) {
-        this.debuggerPort = debuggerPort;
     }
 
 }

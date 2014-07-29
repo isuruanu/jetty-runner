@@ -44,16 +44,14 @@
     ]]>
   </change-notes>
 
-  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
   <idea-version since-build="131"/>
 
-  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
-       on how to target different products -->
   <depends>com.intellij.modules.lang</depends>
 
   <extensions defaultExtensionNs="com.intellij">
       <configurationType implementation="com.github.guikeller.jettyrunner.conf.JettyRunnerConfigurationType" />
-      <programRunner implementation="com.github.guikeller.jettyrunner.runner.JettyProgramRunner" />
+      <programRunner id="Run" implementation="com.github.guikeller.jettyrunner.runner.JettyProgramRunner" order="first"/>
+      <programRunner id="Debug" implementation="com.github.guikeller.jettyrunner.runner.JettyProgramDebugger" order="last" />
   </extensions>
 
 </idea-plugin>
